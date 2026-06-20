@@ -1,0 +1,6 @@
+{
+  "name": "TimeBlock Pro",
+  "description": "Planificador semanal de bloques de tiempo con IA para optimización y alertas de sobrecarga",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
