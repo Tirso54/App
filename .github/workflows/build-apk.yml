@@ -19,19 +19,14 @@ jobs:
           java-version: '17'
 
       - name: Grant permissions
-        run: chmod +x gradlew
-
-      - name: Fix Gradle Wrapper
-        run: |
-          curl -L https://services.gradle.org/distributions/gradle-8.6-bin.zip -o gradle.zip
-          unzip gradle.zip
-          find gradle-8.6 -name "gradle-wrapper.jar" -exec cp {} gradle/wrapper/gradle-wrapper.jar \;
+        run: chmod +x App/gradlew
 
       - name: Build APK
+        working-directory: App
         run: ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: app-debug
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: App/app/build/outputs/apk/debug/app-debug.apk          path: app/build/outputs/apk/debug/app-debug.apk
