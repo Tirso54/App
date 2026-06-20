@@ -21,6 +21,11 @@ jobs:
       - name: Grant permissions
         run: chmod +x gradlew
 
+      - name: Clean and regenerate gradle wrapper
+        run: |
+          rm -rf gradle/wrapper/gradle-wrapper.jar
+          ./gradlew wrapper --gradle-version 8.7
+
       - name: Build APK
         run: ./gradlew assembleDebug
 
