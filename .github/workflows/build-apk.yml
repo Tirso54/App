@@ -21,6 +21,12 @@ jobs:
       - name: Grant permissions
         run: chmod +x gradlew
 
+      - name: Fix Gradle Wrapper
+        run: |
+          curl -L https://services.gradle.org/distributions/gradle-8.6-bin.zip -o gradle.zip
+          unzip gradle.zip
+          find gradle-8.6 -name "gradle-wrapper.jar" -exec cp {} gradle/wrapper/gradle-wrapper.jar \;
+
       - name: Build APK
         run: ./gradlew assembleDebug
 
