@@ -1,0 +1,11 @@
+# Set default behavior to text and auto-detect binary files
+* text=auto
+
+# Explicitly treat as binary (no line ending transformation)
+*.jar binary
+*.png binary
+*.webp binary
+
+# Enforce Unix LF line endings for gradlew scripts
+gradlew text eol=lf
+gradlew.bat text eol=crlf
