@@ -27,7 +27,18 @@ jobs:
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
         run: |
-          echo "$KEYSTORE_BASE64" | base64 -d > my-upload-key.jks
+          if [ -z "$KEYSTORE_BASE64" ]; then
+            echo "::error::El secret KEYSTORE_BASE64 está vacío o no existe. Revisa Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+          # -d ignora caracteres no válidos (saltos de línea, espacios) que suelen
+          # colarse al copiar/pegar en móvil
+          echo "$KEYSTORE_BASE64" | tr -d '[:space:]' | base64 -d > my-upload-key.jks
+          if [ ! -s my-upload-key.jks ]; then
+            echo "::error::El keystore decodificado está vacío. El secret KEYSTORE_BASE64 probablemente está corrupto o incompleto."
+            exit 1
+          fi
+          echo "Keystore decodificado correctamente ($(wc -c < my-upload-key.jks) bytes)"
 
       - name: Build Release APK
         env:
