@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.BuildConfig
+import com.tirso.timeblockpro.BuildConfig
 import com.example.api.Content
 import com.example.api.GeminiApiClient
 import com.example.api.GeminiRequest
